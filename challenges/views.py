@@ -34,17 +34,6 @@ def monthly_challenge_by_number(request, month):
 
 def monthly_challenge(request, month):
     challenge_text = None
-    # switch = {
-    #     'january': 'eat no meat for the entire month',
-    #     'february': 'walk at least 20 min every day',
-    # }
-    # return HttpResponse(switch.get(month, 'invalid option'))
-    # if month == 'january':
-    #     challenge_text = 'eat no meat for the entire month'
-    # elif month == 'february':
-    #     challenge_text = 'walk at least 20 min every day'
-    # else:
-    #     return HttpResponseNotFound('invalid option')
     try:
         challenge_text = monthly_challenges[month]
         return HttpResponse(challenge_text)
