@@ -24,6 +24,17 @@ response_not_found_message = 'invalid option'
 # Create your views here.
 
 
+def index(request):
+    list_items = ''
+    months = list(monthly_challenges.keys())
+    for month in months:
+        capitalized_month = month.capitalize()
+        month_path = reverse('month-challenge', args=[month])
+        list_items += f'<li><a href="{month_path}">{capitalized_month}</a></li>'
+    response_data = f'<ul>{list_items}</ul>'
+    return HttpResponse(response_data)
+
+
 def monthly_challenge_by_number(request, month):
     if month > 0 and month <= len(monthly_challenges):
         months = list(monthly_challenges.keys())
