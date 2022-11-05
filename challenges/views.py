@@ -1,7 +1,9 @@
 
 from ctypes import sizeof
+
+from django.http import (HttpResponse, HttpResponseNotFound,
+                         HttpResponseRedirect)
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 
 monthly_challenges = {
@@ -49,8 +51,10 @@ def monthly_challenge(request, month):
     challenge_text = None
     try:
         challenge_text = monthly_challenges[month]
-        response_data = f'<h1>{challenge_text}</h1>'
-        return HttpResponse(response_data)
+        return render(request, 'challenges/challenge.html', {
+            'challenge_text': challenge_text,
+            'month': month.capitalize()
+        })
     except:
         response_data = f'<h1>{response_not_found_message}</h1>'
         return HttpResponseNotFound(response_data)
