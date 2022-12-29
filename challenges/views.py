@@ -18,7 +18,7 @@ monthly_challenges = {
     'september': 'walk at least 20 min every day',
     'october': 'walk at least 20 min every day',
     'november': 'walk at least 20 min every day',
-    'december': 'walk at least 20 min every day',
+    'december': None,
 }
 
 response_not_found_message = 'invalid option'
@@ -54,3 +54,4 @@ def monthly_challenge(request, month):
     except:
         response_data = f'<h1>{response_not_found_message}</h1>'
         return HttpResponseNotFound(response_data)
+
